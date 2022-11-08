@@ -16,29 +16,59 @@
     <div class="col">
 
       <br><br><br><br>
-      <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search books" aria-label="Recipient's username" aria-describedby="button-addon2">
-        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+      <div class="input-group mb-6">
+        <form class="form-control" action="/search" method="GET">
+          <input type="text" name="search" class="form-control" placeholder="Search books by names" aria-label="Recipient's username" aria-describedby="button-addon2" required><br>
+          <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+          </form>
       </div>
 
     </div>
     <div class="col"></div>
   </div>
+    <br>
 
 <!--    show returned result-->
-     <div class="row">
+    {% if books %}
+    <div class="row">
+        {% for book in books %}
+
+
+
+      <div class="card mb-4" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="{{book.cover}}" class="img-fluid rounded-start" alt="{{book.book_title}}">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{book.book_title}}</h5>
+            <p class="card-text"><small class="text-muted">Author:<i>{{book.authors}}</i></small></p>
+            <p class="card-text"><a href="{{book.link}}" target="_blank" class="btn btn-success">Read Book</a> </p>
+          </div>
+        </div>
+      </div>
+    </div>
+      &nbsp;&nbsp;&nbsp;
+      {% endfor %}
+
+    </div>
+    {% else %}
+
+    <div class="row">
     <div class="col"></div>
     <div class="col">
-
       <div class="card">
         <div class="card-body">
-          No search result.
+            There are no book searched
         </div>
       </div>
 
     </div>
     <div class="col"></div>
   </div>
+
+    {% endif %}
 
 
 </div>
