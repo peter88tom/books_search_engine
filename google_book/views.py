@@ -18,15 +18,15 @@ def search_books(request):
   queried_book = []
 
   for book in books['items']:
-    k = {
-      "book_title":book['volumeInfo']['title'],
-      "authors":(book['volumeInfo']['authors'])[0],
-      'cover':book['volumeInfo']['imageLinks']['smallThumbnail'],
-      'link': book['volumeInfo']['previewLink'],
-    }
-    queried_book.append(k)
-
-  #print(queried_book)
-
+    try:
+      k = {
+        "book_title":book['volumeInfo']['title'],
+        "authors":(book['volumeInfo']['authors'])[0],
+        'cover':book['volumeInfo']['imageLinks']['smallThumbnail'],
+        'link': book['volumeInfo']['previewLink'],
+      }
+      queried_book.append(k)
+    except Exception as e:
+      pass
   return render(request, 'google_book/index.html',{"books":queried_book})
 
