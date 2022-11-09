@@ -21,7 +21,6 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Environment variables
       env:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
     - name: Install Dependencies
