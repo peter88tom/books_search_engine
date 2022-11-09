@@ -32,7 +32,8 @@ jobs:
     - name: Run Tests
       env:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
-        DJANGO_SETTINGS_MODULE: ${{ secrets.DJANGO_SETTINGS_MODULE }}
+        DJANGO_SETTINGS_MODULE:
+        API_NAME: ${{ secrets.API_NAME }}
         API_KEY: ${{ secrets.API_KEY }}
       run: |
         python -m pytest
