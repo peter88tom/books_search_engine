@@ -21,10 +21,6 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
-      env:
-        SECRET_KEY: ${{ secrets.SECRET_KEY }}
-        DJANGO_SETTINGS_MODULE: ${{ secrets.DJANGO_SETTINGS_MODULE }}
-        API_KEY: ${{ secrets.API_KEY }}
     - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
@@ -32,7 +28,7 @@ jobs:
     - name: Run Tests
       env:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
-        DJANGO_SETTINGS_MODULE:
+        DJANGO_SETTINGS_MODULE: ${{ secrets.DJANGO_SETTINGS_MODULE }}
         API_NAME: ${{ secrets.API_NAME }}
         API_KEY: ${{ secrets.API_KEY }}
       run: |
